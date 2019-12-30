@@ -179,8 +179,25 @@
             {{/each}}
         </div>
     {{else}}
-        <div class="pa20 br4 shadow-1 bg-grouped-table mt2">
-            <p class="ma0 pa0 tc midgrey">Member doesn't have an active Stripe subscription</p>
+        <div class="br4 shadow-1 bg-grouped-table mt2">
+            <p class="pa20 ma0 pa0 tc midgrey">Member doesn't have an active Stripe subscription</p>
+            <div class="pa5 pb0 pt4 flex flex-column justify-between bt b--whitegrey">
+                {{#gh-form-group classNames="gh-members-paidStatus-checkbox"}}
+                <div class="flex justify-between items-center">
+                    <div>
+
+                        <h4 class="gh-setting-title">Grant paid status</h4>
+                        <p class="gh-setting-desc">Member will be granter <em>paid status</em> and get <em>access to paid content</em></p>
+                    </div>
+                    <div class="for-switch">
+                        <label class="switch" for="paidStatus-checkbox">
+                            <Input @checked={{this.member.paidStatus}} @type="checkbox" @id="paidStatus-checkbox" @name="paidStatus" />
+                            <span class="input-toggle-component"></span>
+                        </label>
+                    </div>
+                </div>
+                {{/gh-form-group}}
+            </div>
         </div>
     {{/if}}
 {{/if}}
