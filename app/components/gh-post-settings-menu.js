@@ -197,12 +197,12 @@ export default Component.extend(SettingsMenuMixin, {
             let post = this.post;
             let dateString = moment(date).format('YYYY-MM-DDTHH:mm:ss[Z]');
 
-            post.get('errors').remove('callDate');
+            post.get('errors').remove('callDateDate');
 
-            if (post.get('isNew') || date === post.get('callDate')) {
-                post.validate({property: 'callBlog'});
+            if (post.get('isNew') || date === post.get('callDateDate')) {
+                post.validate({property: 'callDateDate'});
             } else {
-                post.set('callDate', dateString);
+                post.set('callDateDate', dateString);
                 return this.savePost.perform();
             }
         },

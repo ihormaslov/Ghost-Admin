@@ -133,6 +133,7 @@ export default Model.extend(Comparable, ValidationEngine, {
     // value so this should be almost entirely internal
     publishedAtBlogDate: '',
     publishedAtBlogTime: '',
+    callDateDate: '',
 
     canonicalUrlScratch: boundOneWay('canonicalUrl'),
     customExcerptScratch: boundOneWay('customExcerpt'),
@@ -191,6 +192,38 @@ export default Model.extend(Comparable, ValidationEngine, {
             return this._getPublishedAtBlogTZ();
         }
     }),
+
+    callDateTZ: computed('callDateDate', 'settings.activeTimezone', {
+        get() {
+            return this._callDateTZ();
+        },
+        set(key, value) {
+            let momentValue = value ? moment(value) : null;
+            if (momentValue) {
+                let blogTimezone = this.get('settings.activeTimezone');
+                let callDateDate = moment.tz(momentValue, blogTimezone);
+    
+                this.set('callDateDate', callDateDate.format('YYYY-MM-DD HH:mm'));
+            } else {
+                this.set('callDateDate', '');
+            }
+            return this._callDateTZ();
+        }
+    }),
+
+    _callDateTZ(){
+        let callDate = this.callDate;
+        let callDateDate = this.callDateDate;
+        let blogTimezone = this.get('settings.activeTimezone');
+
+        if (!callDate && isBlank(callDateDate)){
+            return null;
+        }
+        if (callDateDate){
+            return moment.tz(callDateDate, blogTimezone);
+        }
+        return moment.tz(this.callDate, blogTimezone); 
+    },
 
     _getPublishedAtBlogTZ() {
         let publishedAtUTC = this.publishedAtUTC;
@@ -319,6 +352,8 @@ export default Model.extend(Comparable, ValidationEngine, {
         let publishedAtUTC = publishedAtBlogTZ ? publishedAtBlogTZ.utc() : null;
         this.set('publishedAtUTC', publishedAtUTC);
 
-        this.set('callDate', this.callDate.format('YYYY-MM-DD HH:mm:ss'));
+        let callDateTZ = this.callDateTZ;
+        let callDateUTC = callDateTZ ? callDateTZ.utc() : null;
+        this.set('callDate', callDateUTC);
     }
 });
