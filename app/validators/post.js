@@ -19,6 +19,7 @@ export default BaseValidator.create({
         'twitterDescription',
         'publishedAtBlogTime',
         'publishedAtBlogDate',
+        'callDate',
         'emailSubject'
     ],
 
