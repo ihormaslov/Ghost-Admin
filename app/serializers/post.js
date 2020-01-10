@@ -10,6 +10,7 @@ export default ApplicationSerializer.extend(EmbeddedRecordsMixin, {
         tags: {embedded: 'always'},
         publishedAtUTC: {key: 'published_at'},
         createdAtUTC: {key: 'created_at'},
+        callDate: {key: 'call_date'},
         updatedAtUTC: {key: 'updated_at'},
         email: {embedded: 'always'}
     },
