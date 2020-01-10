@@ -318,5 +318,7 @@ export default Model.extend(Comparable, ValidationEngine, {
         let publishedAtBlogTZ = this.publishedAtBlogTZ;
         let publishedAtUTC = publishedAtBlogTZ ? publishedAtBlogTZ.utc() : null;
         this.set('publishedAtUTC', publishedAtUTC);
+
+        this.set('callDate', this.callDate.format('YYYY-MM-DD HH:mm:ss'));
     }
 });

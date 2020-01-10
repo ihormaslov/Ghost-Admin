@@ -195,7 +195,7 @@ export default Component.extend(SettingsMenuMixin, {
 
         setCallDate(date) {
             let post = this.post;
-            let dateString = moment(date).format('YYYY-MM-DD HH:mm:ss');
+            let dateString = moment(date).format('YYYY-MM-DDTHH:mm:ss[Z]');
 
             post.get('errors').remove('callDate');
 
