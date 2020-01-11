@@ -69,6 +69,7 @@
                     {{/unless}}
                 </div>
 
+                {{#if (eq this.post.displayName "post")}}
                 <div class="form-group">
                     <label>Call date</label>
                     {{gh-date-picker
@@ -80,6 +81,7 @@
                         static=true
                     }}
                 </div>
+                {{/if}}
 
                 {{#unless this.session.user.isContributor}}
                 <div class="form-group">
