@@ -43,12 +43,12 @@ export default BaseValidator.create({
         }
     },
 
-    experts(model) {
-        if (isEmpty(model.experts)) {
-            model.errors.add('experts', 'At least one expert is required.');
-            this.invalidate();
-        }
-    },
+    // experts(model) {
+    //     if (isEmpty(model.experts)) {
+    //         model.errors.add('experts', 'At least one expert is required.');
+    //         this.invalidate();
+    //     }
+    // },
 
     canonicalUrl(model) {
         let validatorOptions = {require_protocol: true};

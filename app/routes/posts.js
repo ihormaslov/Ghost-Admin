@@ -10,6 +10,7 @@ export default AuthenticatedRoute.extend({
     queryParams: {
         type: {refreshModel: true},
         author: {refreshModel: true},
+        expert: {refreshModel: true},
         tag: {refreshModel: true},
         order: {refreshModel: true}
     },
@@ -59,6 +60,8 @@ export default AuthenticatedRoute.extend({
                 filterParams.status = 'draft';
             } else if (params.author) {
                 filterParams.authors = params.author;
+            } else if (params.expert) {
+                filterParams.experts = params.expert;
             }
 
             let filter = this._filterString(filterParams);
