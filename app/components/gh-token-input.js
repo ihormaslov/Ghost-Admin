@@ -82,7 +82,6 @@ export default Component.extend({
     optionsWithoutSelectedTask: task(function* () {
         let options = yield this.options;
         let selected = yield this.selected;
-        console.log(options, selected, '===========================');
         return options.filter(o => !selected.includes(o));
     }),
 

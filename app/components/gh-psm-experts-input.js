@@ -27,7 +27,6 @@ export default Component.extend({
         // to a live-query that will be immediately populated with what's in the
         // store and be updated when the above query returns
         this.store.query('user', {limit: 'all'});
-        console.log('==========================================');
         this.set('availableExperts', this.store.peekAll('user'));
     },
 
