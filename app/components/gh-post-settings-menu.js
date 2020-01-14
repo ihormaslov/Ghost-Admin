@@ -520,6 +520,28 @@ export default Component.extend(SettingsMenuMixin, {
             });
         },
 
+        changeExperts(newExperts) {
+            let post = this.post;
+
+            // return if nothing changed
+            if (newExperts.mapBy('id').join() === post.get('experts').mapBy('id').join()) {
+                return;
+            }
+
+            post.set('experts', newExperts);
+            post.validate({property: 'experts'});
+
+            // if this is a new post (never been saved before), don't try to save it
+            if (post.get('isNew')) {
+                return;
+            }
+
+            this.savePost.perform().catch((error) => {
+                this.showError(error);
+                post.rollbackAttributes();
+            });
+        },
+
         deletePost() {
             if (this.deletePost) {
                 this.deletePost();

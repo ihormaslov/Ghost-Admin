@@ -37,7 +37,7 @@ export default Controller.extend({
     session: service(),
     store: service(),
 
-    queryParams: ['type', 'author', 'tag', 'order'],
+    queryParams: ['type', 'author', 'expert', 'tag', 'order'],
 
     type: null,
     author: null,
@@ -58,8 +58,8 @@ export default Controller.extend({
 
     postsInfinityModel: alias('model'),
 
-    showingAll: computed('type', 'author', 'tag', function () {
-        let {type, author, tag} = this.getProperties(['type', 'author', 'tag']);
+    showingAll: computed('type', 'author', 'expert', 'tag', function () {
+        let {type, author, tag} = this.getProperties(['type', 'author', 'expert', 'tag']);
 
         return !type && !author && !tag;
     }),
@@ -114,6 +114,26 @@ export default Controller.extend({
         let authors = this.get('availableAuthors');
 
         return authors.findBy('slug', author);
+    }),
+
+    _availableExperts: computed(function () {
+        return this.get('store').peekAll('user');
+    }),
+
+    availableExperts: computed('_availableExperts.[]', function () {
+        let experts = this.get('_availableExperts');
+        let options = experts.toArray();
+
+        options.unshiftObject({name: 'All experts', slug: null});
+
+        return options;
+    }),
+
+    selectedExpert: computed('expert', 'availableExperts.[]', function () {
+        let expert = this.get('expert');
+        let experts = this.get('availableExperts');
+
+        return experts.findBy('slug', expert);
     }),
 
     typeClassNames: computed('type', function () {

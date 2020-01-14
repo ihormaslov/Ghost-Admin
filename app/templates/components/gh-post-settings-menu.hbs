@@ -121,6 +121,14 @@
                         {{gh-psm-authors-input selectedAuthors=this.post.authors updateAuthors=(action "changeAuthors") triggerId="author-list"}}
                         <GhErrorMessage @errors={{this.post.errors}} @property="authors" data-test-error="authors" />
                     {{/gh-form-group}}
+
+                    {{#if (eq this.post.displayName "post")}}
+                    {{#gh-form-group class="for-select" errors=this.post.errors hasValidated=this.post.hasValidated property="experts" data-test-input="experts"}}
+                        <label for="expert-list">Experts</label>
+                        {{gh-psm-experts-input selectedExperts=this.post.experts updateExperts=(action "changeExperts") triggerId="expert-list"}}
+                        <GhErrorMessage @errors={{this.post.errors}} @property="expert" data-test-error="experts" />
+                    {{/gh-form-group}}
+                    {{/if}}
                 {{/unless}}
 
                 <ul class="nav-list nav-list-block">

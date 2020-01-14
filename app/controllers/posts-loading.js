@@ -15,6 +15,8 @@ export default Controller.extend({
     selectedTag: readOnly('postsController.selectedTag'),
     availableAuthors: readOnly('postsController.availableAuthors'),
     selectedAuthor: readOnly('postsController.selectedAuthor'),
+    availableExperts: readOnly('postsController.availableExperts'),
+    selectedExpert: readOnly('postsController.selectedExpert'),
     availableOrders: readOnly('postsController.availableOrders'),
     selectedOrder: readOnly('postsController.selectedOrder')
 });

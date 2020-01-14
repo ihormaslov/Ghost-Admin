@@ -110,6 +110,7 @@ export default Model.extend(Comparable, ValidationEngine, {
     sendEmailWhenPublished: attr('boolean', {defaultValue: false}),
 
     authors: hasMany('user', {embedded: 'always', async: false}),
+    experts: hasMany('user', {embedded: 'always', async: false}),
     createdBy: belongsTo('user', {async: true}),
     email: belongsTo('email', {async: false}),
     publishedBy: belongsTo('user', {async: true}),
