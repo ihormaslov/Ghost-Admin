@@ -10,6 +10,7 @@ export default PostSerializer.extend({
         delete json.email_id;
         delete json.email;
         delete json.call_date;
+        delete json.experts;
 
         return json;
     }
