@@ -15,13 +15,13 @@ export function countCharacters(params) {
 
     el.className = 'word-count';
 
-    if (length > 180) {
+    if (length > 64000) {
         el.style.color = '#f05230';
     } else {
         el.style.color = '#738a94';
     }
 
-    el.innerHTML = 200 - length;
+    el.innerHTML = 65535 - length;
 
     return htmlSafe(el.outerHTML);
 }
